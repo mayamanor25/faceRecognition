@@ -27,8 +27,19 @@ def plot_digit(images, digits, index):
 def load_data():
     data = pd.read_csv("database10lines.csv")
 
-    X = train.iloc[:, 1:].values
-    Y = train.iloc[:, 0]
+    # ???
+
+    X_src = data.iloc[:, 1:-1].values
+    Y = data.iloc[:, 0]
+
+    X = []
+    for x in X_src:
+        pixels = []
+        pixels_str_array = x[0].split()
+        for pixel in pixels_str_array:
+            pixels.append(int(pixel))
+        X.append(pixels)
+
 
     X_train, X_test, Y_train, Y_test = train_test_split(X, Y, test_size=0.33, random_state=42)
 
@@ -59,3 +70,6 @@ for השורה השמאלית in data:
         x_train = השורה האמצעית
         x_test = השורה הימנית
 """
+
+
+load_data()
